@@ -18,6 +18,8 @@ app.use(express.json());
 
 // ---------------- API ----------------
 
+// ---------------- API ----------------
+
 app.get("/api/apps/top", async (req, res) => {
   try {
     const results = await gplay.list({
@@ -51,16 +53,17 @@ app.get("/api/search", async (req, res) => {
   }
 });
 
+
 // ---------------- FRONTEND (VITE BUILD) ----------------
 
 const distPath = path.join(process.cwd(), "dist");
 
 app.use(express.static(distPath));
 
+// IMPORTANT: keep this LAST
 app.get("*", (req, res) => {
   res.sendFile(path.join(distPath, "index.html"));
 });
-
 // ---------------- START ----------------
 
 app.listen(PORT, "0.0.0.0", () => {
